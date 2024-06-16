@@ -71,6 +71,6 @@ app.get('/dashboard', async (req, res) => {
     })
 })
 
-app.listen(4300, async () => {
+app.listen(8080, async () => {
     console.log(`Auth server is running on port 4300`)
 })
