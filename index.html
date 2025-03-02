@@ -2754,7 +2754,12 @@
     </section>
 
     <section class="music-outer" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-        <div class="music-box auto" id="music-box"></div>
+        <div class="music-box auto" id="music-box" onclick="audiyo()">
+            <audio id="audioPlayer" autoplay loop>
+                <source src="imgs/bgm.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung elemen audio.
+            </audio>
+        </div>
     </section>
 
     <script>
@@ -2763,6 +2768,25 @@
         const tamu = document.getElementsByClassName("tamu")
         for (let i = 0; i < tamu.length; i++) {
             tamu[i].innerText = to
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let audio = document.getElementById("audioPlayer");
+            
+            // Cek jika browser memblokir autoplay
+            let playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    console.log("Audio dimulai otomatis.");
+                }).catch(error => {
+                    console.log("Autoplay dicegah, pengguna perlu berinteraksi.");
+                });
+            }
+        });
+
+        function audiyo() {
+            let audio = document.getElementById("audioPlayer");
+            audio.paused ? audio.play() : audio.pause()
         }
     </script>
     <script>
@@ -2843,7 +2867,7 @@
 
         // Music
         var MUSIC = {
-            'url': "https:\/\/katsudoto-storage.s3.ap-southeast-1.amazonaws.com\/media\/public\/29541\/23568\/assets\/y2matecom-siblings-singing-carpenters-close-to-you%E3%85%A3%EC%B9%9C%EB%82%A8%EB%A7%A4%EA%B0%80-%EB%B6%80%EB%A5%B4%EB%8A%94-carpenters-close-to-you-1703491461-d83fdaaccd77b34ea80bb622.mp3",
+            'url': "/imgs/bgm.mp3",
             'box': '#music-box'
         };
 
